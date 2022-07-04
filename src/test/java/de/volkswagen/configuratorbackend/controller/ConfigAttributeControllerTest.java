@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import de.volkswagen.configuratorbackend.model.CarConfigAttribute;
 import de.volkswagen.configuratorbackend.model.Type;
+import de.volkswagen.configuratorbackend.repository.CarConfigAttributeRepository;
 import org.checkerframework.checker.units.qual.C;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @AutoConfigureMockMvc
 @SpringBootTest
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class ConfigAttributeControllerTest {
 
@@ -32,15 +34,18 @@ class ConfigAttributeControllerTest {
     private String stringAttribute2;
     private String stringAttribute3;
 
-    @BeforeEach
+
+    @BeforeAll
     void setUp() throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper();
-        CarConfigAttribute attribute1 = new CarConfigAttribute("a1", Type.color);
-        CarConfigAttribute attribute2 = new CarConfigAttribute("a2", Type.extra);
-        CarConfigAttribute attribute3 = new CarConfigAttribute("a3", Type.engine);
+        CarConfigAttribute attribute1 = new CarConfigAttribute(1,"a1", Type.color);
+        CarConfigAttribute attribute2 = new CarConfigAttribute(2,"a2", Type.extra);
+        CarConfigAttribute attribute3 = new CarConfigAttribute(3,"a3", Type.engine);
         this.stringAttribute1 = mapper.writeValueAsString(attribute1);
         this.stringAttribute2 = mapper.writeValueAsString(attribute2);
         this.stringAttribute3 = mapper.writeValueAsString(attribute3);
+
+
     }
 
 

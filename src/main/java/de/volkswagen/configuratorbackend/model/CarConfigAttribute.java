@@ -27,6 +27,12 @@ public class CarConfigAttribute {
         this.type = type;
         this.exclusions = new HashSet<>();
     }
+    public CarConfigAttribute(long id, String title, Type type) {
+        this.id = id;
+        this.title = title;
+        this.type = type;
+        this.exclusions = new HashSet<>();
+    }
 
     public String getCategory() {
         return category;
