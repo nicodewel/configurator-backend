@@ -1,0 +1,11 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://chargedb.postgres.database.azure.com:5432/configurator?&sslmode=require
+    username: fakultaet
+    password: generation3!
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
